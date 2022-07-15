@@ -2,6 +2,7 @@ package com.jaax.retrofitmvp.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jaax.retrofitmvp.data.MainMVP
@@ -11,6 +12,8 @@ import com.jaax.retrofitmvp.databinding.ActivityMainBinding
 import com.jaax.retrofitmvp.utils.MainConstants
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity(), MainMVP.View {
     private lateinit var bind: ActivityMainBinding
@@ -21,29 +24,31 @@ class MainActivity : AppCompatActivity(), MainMVP.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         bind = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
-        setContentView( bind.root )
+        setContentView(bind.root)
 
         Logger.addLogAdapter(AndroidLogAdapter())
 
-        layoutManager = GridLayoutManager( this, 3 )
+        layoutManager = GridLayoutManager(this, 3)
 
-        bind.recyclerView.setHasFixedSize( true )
+        bind.recyclerView.setHasFixedSize(true)
         bind.recyclerView.layoutManager = layoutManager
 
         pokemonAdapter = PokemonAdapter()
         presenter = MainPresenter(this)
         bind.recyclerView.adapter = pokemonAdapter
-        presenter.firstRequest()
-
     }
 
     override fun onResume() {
         super.onResume()
-        bind.recyclerView.addOnScrollListener( object : RecyclerView.OnScrollListener(){
+
+        lifecycleScope.launch(Dispatchers.IO) { presenter.getMorePokemon() }
+
+        bind.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                Logger.i( "$dy" )
+                Logger.i("$dy")
                 if (dy > 0) {
+
                     val itemCount = layoutManager.childCount
                     val itemTotalCount = layoutManager.itemCount
                     val lastItems = layoutManager.findFirstVisibleItemPosition()
@@ -51,7 +56,10 @@ class MainActivity : AppCompatActivity(), MainMVP.View {
                         if ((itemCount + lastItems) >= itemTotalCount) {
                             presenter.setMyLoadable(false)
                             presenter.increaseOffset(MainConstants.LIMIT)
-                            presenter.getMorePokemon()
+
+                            lifecycleScope.launch(Dispatchers.IO) {
+                                presenter.getMorePokemon()
+                            }
                         }
                     }
                 }

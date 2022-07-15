@@ -14,7 +14,6 @@ interface MainMVP {
     }
 
     interface Presenter {
-        fun firstRequest()
         fun getMorePokemon()
         fun setMyLoadable(canLoad: Boolean)
         fun getMyLoadable(): Boolean

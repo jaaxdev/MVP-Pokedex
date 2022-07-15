@@ -15,10 +15,6 @@ class MainPresenter(view: MainActivity): MainMVP.Presenter, MainMVP.Model.OnFini
         model = MainModel(this)
     }
 
-    override fun firstRequest() {
-        model!!.getListPokemon(this)
-    }
-
     override fun getMorePokemon() {
         model!!.getListPokemon(this)
     }
