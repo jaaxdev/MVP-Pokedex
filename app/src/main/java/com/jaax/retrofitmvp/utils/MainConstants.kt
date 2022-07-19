@@ -6,5 +6,6 @@ class MainConstants {
         const val POKEMON_ENDPOINT = "pokemon"
         const val POKEMON_IMAGE_URL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
         const val LIMIT = 15
+        const val TAG_LOG = "pokedex"
     }
 }

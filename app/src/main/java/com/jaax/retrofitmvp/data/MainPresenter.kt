@@ -3,8 +3,11 @@ package com.jaax.retrofitmvp.data
 import com.jaax.retrofitmvp.data.model.Pokemon
 import com.jaax.retrofitmvp.ui.MainActivity
 import com.orhanobut.logger.Logger
+import javax.inject.Inject
 
-class MainPresenter(view: MainActivity): MainMVP.Presenter, MainMVP.Model.OnFinishedListener {
+class MainPresenter @Inject constructor(view: MainActivity): MainMVP.Presenter,
+    MainMVP.Model.OnFinishedListener {
+
     private var view: MainMVP.View? = null
     private var model: MainMVP.Model? = null
     private var offset = 0
@@ -15,7 +18,7 @@ class MainPresenter(view: MainActivity): MainMVP.Presenter, MainMVP.Model.OnFini
         model = MainModel(this)
     }
 
-    override fun getMorePokemon() {
+    override suspend fun getMorePokemon() {
         model!!.getListPokemon(this)
     }
 

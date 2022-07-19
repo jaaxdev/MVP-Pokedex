@@ -12,14 +12,19 @@ import com.jaax.retrofitmvp.databinding.ActivityMainBinding
 import com.jaax.retrofitmvp.utils.MainConstants
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), MainMVP.View {
     private lateinit var bind: ActivityMainBinding
-    private lateinit var presenter: MainMVP.Presenter
     private lateinit var pokemonAdapter: PokemonAdapter
     private lateinit var layoutManager: GridLayoutManager
+
+    @Inject
+    lateinit var presenter: MainMVP.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         bind = ActivityMainBinding.inflate(layoutInflater)
@@ -36,22 +41,21 @@ class MainActivity : AppCompatActivity(), MainMVP.View {
         pokemonAdapter = PokemonAdapter()
         presenter = MainPresenter(this)
         bind.recyclerView.adapter = pokemonAdapter
+
+        lifecycleScope.launch(Dispatchers.IO) { presenter.getMorePokemon() }
     }
 
     override fun onResume() {
         super.onResume()
 
-        lifecycleScope.launch(Dispatchers.IO) { presenter.getMorePokemon() }
-
         bind.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                Logger.i("$dy")
                 if (dy > 0) {
-
                     val itemCount = layoutManager.childCount
                     val itemTotalCount = layoutManager.itemCount
                     val lastItems = layoutManager.findFirstVisibleItemPosition()
+
                     if (presenter.getMyLoadable()) {
                         if ((itemCount + lastItems) >= itemTotalCount) {
                             presenter.setMyLoadable(false)

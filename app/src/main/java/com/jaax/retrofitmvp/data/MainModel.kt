@@ -1,22 +1,21 @@
 package com.jaax.retrofitmvp.data
 
+import android.util.Log
 import com.jaax.retrofitmvp.utils.MainConstants
 import com.jaax.retrofitmvp.data.model.PokemonResponse
-import com.jaax.retrofitmvp.data.network.PokemonService
-import com.jaax.retrofitmvp.data.network.RetrofitClient
-import com.orhanobut.logger.AndroidLogAdapter
-import com.orhanobut.logger.Logger
+import com.jaax.retrofitmvp.data.network.RetrofitHelper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class MainModel(presenter: MainPresenter): MainMVP.Model {
+class MainModel @Inject constructor(presenter: MainPresenter): MainMVP.Model {
     private var presenter: MainMVP.Presenter
     init {
         this.presenter = presenter
     }
-    override fun getListPokemon(onFinishedListener: MainMVP.Model.OnFinishedListener) {
-        val service = RetrofitClient( MainConstants.POKEAPI_BASE_URL ).getService( PokemonService::class.java )
+    override suspend fun getListPokemon(onFinishedListener: MainMVP.Model.OnFinishedListener) {
+        val service = RetrofitHelper.createService()
         val call = service.getAllPokemon(MainConstants.LIMIT, presenter.getMyOffset())
 
         call.enqueue(object : Callback<PokemonResponse> {
@@ -29,7 +28,7 @@ class MainModel(presenter: MainPresenter): MainMVP.Model {
                     val listPokemon = response.body()!!.listPokemon
                     onFinishedListener.onFinished(listPokemon)
                 } else {
-                    Logger.w("UNSUCCESSFUL")
+                    Log.i( MainConstants.TAG_LOG,"UNSUCCESSFUL")
                 }
             }
 

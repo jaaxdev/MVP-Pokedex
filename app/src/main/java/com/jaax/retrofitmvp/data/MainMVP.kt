@@ -5,7 +5,7 @@ import com.jaax.retrofitmvp.data.model.Pokemon
 interface MainMVP {
 
     interface Model {
-        fun getListPokemon(onFinishedListener: OnFinishedListener)
+        suspend fun getListPokemon(onFinishedListener: OnFinishedListener)
 
         interface OnFinishedListener {
             fun onFinished(listPokemon: List<Pokemon>)
@@ -14,7 +14,7 @@ interface MainMVP {
     }
 
     interface Presenter {
-        fun getMorePokemon()
+        suspend fun getMorePokemon()
         fun setMyLoadable(canLoad: Boolean)
         fun getMyLoadable(): Boolean
         fun increaseOffset(increment: Int)
