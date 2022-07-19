@@ -9,14 +9,13 @@ import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
-class MainModel @Inject constructor(presenter: MainPresenter): MainMVP.Model {
-    private var presenter: MainMVP.Presenter
-    init {
-        this.presenter = presenter
-    }
+class MainModel @Inject constructor(private val presenter: MainPresenter) : MainMVP.Model {
+
+    private val service = RetrofitHelper.createService()
+    private lateinit var call: Call<PokemonResponse>
+
     override suspend fun getListPokemon(onFinishedListener: MainMVP.Model.OnFinishedListener) {
-        val service = RetrofitHelper.createService()
-        val call = service.getAllPokemon(MainConstants.LIMIT, presenter.getMyOffset())
+        call = service.getAllPokemon(MainConstants.LIMIT, presenter.getMyOffset())
 
         call.enqueue(object : Callback<PokemonResponse> {
             override fun onResponse(
@@ -28,7 +27,7 @@ class MainModel @Inject constructor(presenter: MainPresenter): MainMVP.Model {
                     val listPokemon = response.body()!!.listPokemon
                     onFinishedListener.onFinished(listPokemon)
                 } else {
-                    Log.i( MainConstants.TAG_LOG,"UNSUCCESSFUL")
+                    Log.i(MainConstants.TAG_LOG, "UNSUCCESSFUL")
                 }
             }
 

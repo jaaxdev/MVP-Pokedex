@@ -5,16 +5,14 @@ import com.jaax.retrofitmvp.ui.MainActivity
 import com.orhanobut.logger.Logger
 import javax.inject.Inject
 
-class MainPresenter @Inject constructor(view: MainActivity): MainMVP.Presenter,
+class MainPresenter @Inject constructor(private val view: MainActivity) : MainMVP.Presenter,
     MainMVP.Model.OnFinishedListener {
 
-    private var view: MainMVP.View? = null
     private var model: MainMVP.Model? = null
     private var offset = 0
     private var loadable = false
 
     init {
-        this.view = view
         model = MainModel(this)
     }
 
@@ -39,7 +37,7 @@ class MainPresenter @Inject constructor(view: MainActivity): MainMVP.Presenter,
     }
 
     override fun onFinished(listPokemon: List<Pokemon>) {
-        view!!.showPokemon(listPokemon)
+        view.showPokemon(listPokemon)
     }
 
     override fun onFailure(t: Throwable) {
