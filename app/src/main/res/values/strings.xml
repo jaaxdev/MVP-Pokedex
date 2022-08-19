@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Pokedex API</string>
+    <string name="app_name">Poke-jaax</string>
+    <string name="image_description">image description</string>
+    <string name="dots">...</string>
 </resources>

@@ -2,25 +2,24 @@ package com.jaax.retrofitmvp.data
 
 import android.util.Log
 import com.jaax.retrofitmvp.utils.MainConstants
-import com.jaax.retrofitmvp.data.model.PokemonResponse
-import com.jaax.retrofitmvp.data.network.RetrofitHelper
+import com.jaax.retrofitmvp.data.model.ResultResponse
+import com.jaax.retrofitmvp.data.network.PokemonService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
-class MainModel @Inject constructor(private val presenter: MainPresenter) : MainMVP.Model {
-
-    private val service = RetrofitHelper.createService()
-    private lateinit var call: Call<PokemonResponse>
+class MainModel @Inject constructor(
+    private val presenter: MainPresenter,
+    private val service: PokemonService) : MainMVP.Model {
 
     override suspend fun getListPokemon(onFinishedListener: MainMVP.Model.OnFinishedListener) {
-        call = service.getAllPokemon(MainConstants.LIMIT, presenter.getMyOffset())
+        val call = service.getAllPokemon(MainConstants.LIMIT, presenter.getMyOffset())
 
-        call.enqueue(object : Callback<PokemonResponse> {
+        call.enqueue(object : Callback<ResultResponse> {
             override fun onResponse(
-                call: Call<PokemonResponse>,
-                response: Response<PokemonResponse>
+                call: Call<ResultResponse>,
+                response: Response<ResultResponse>
             ) {
                 presenter.setMyLoadable(true)
                 if (response.isSuccessful) {
@@ -31,7 +30,7 @@ class MainModel @Inject constructor(private val presenter: MainPresenter) : Main
                 }
             }
 
-            override fun onFailure(call: Call<PokemonResponse>, t: Throwable) {
+            override fun onFailure(call: Call<ResultResponse>, t: Throwable) {
                 presenter.setMyLoadable(true)
                 onFinishedListener.onFailure(t)
             }

@@ -2,8 +2,7 @@ package com.jaax.retrofitmvp.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Pokemon(
-    @SerializedName("name")
+data class Result(
     val name: String,
     @SerializedName("url")
     val numberURL: String ) {

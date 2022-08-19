@@ -9,7 +9,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:background="@drawable/gradiente"
+        android:background="@drawable/background_pokemon_cardview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
