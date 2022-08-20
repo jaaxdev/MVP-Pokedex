@@ -19,9 +19,11 @@ interface MainMVP {
         fun getMyLoadable(): Boolean
         fun increaseOffset(increment: Int)
         fun getMyOffset(): Int
+        fun cancelProgressbar()
     }
 
     interface View {
         fun showPokemon(listPokemon: List<Result>)
+        fun cancelProgressbar()
     }
 }

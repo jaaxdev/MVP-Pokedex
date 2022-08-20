@@ -1,6 +1,7 @@
 package com.jaax.retrofitmvp.ui
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -8,12 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jaax.retrofitmvp.data.MainMVP
 import com.jaax.retrofitmvp.data.model.Result
 import com.jaax.retrofitmvp.databinding.ActivityMainBinding
-import com.jaax.retrofitmvp.utils.MainConstants
-import com.orhanobut.logger.AndroidLogAdapter
-import com.orhanobut.logger.Logger
+import com.jaax.retrofitmvp.utils.MyConsts
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -30,8 +28,6 @@ class MainActivity : AppCompatActivity(), MainMVP.View {
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        Logger.addLogAdapter(AndroidLogAdapter())
 
         adapter = ResultAdapter(onPokeListener = { name -> onPokeClicked(name) })
         layoutManager = GridLayoutManager(this, 3)
@@ -58,7 +54,7 @@ class MainActivity : AppCompatActivity(), MainMVP.View {
                     if (presenter.getMyLoadable()) {
                         if ((itemCount + lastItems) >= itemTotalCount) {
                             presenter.setMyLoadable(false)
-                            presenter.increaseOffset(MainConstants.LIMIT)
+                            presenter.increaseOffset(MyConsts.LIMIT)
 
                             lifecycleScope.launch(Dispatchers.IO) {
                                 presenter.getMorePokemon()
@@ -71,14 +67,14 @@ class MainActivity : AppCompatActivity(), MainMVP.View {
     }
 
     private fun onPokeClicked(name: String) {
-        lifecycleScope.launch {
-            binding.recyclerView.isClickable = false
-            delay(3000)
-        }
         PokemonDialog(name).show(supportFragmentManager, "showpokemon")
     }
 
     override fun showPokemon(listPokemon: List<Result>) {
         adapter.addAllPokemon(listPokemon)
+    }
+
+    override fun cancelProgressbar() {
+        binding.progressbar.visibility = View.GONE
     }
 }

@@ -2,12 +2,13 @@ package com.jaax.retrofitmvp.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class PokemonSingle(
+data class Pokemon(
     @SerializedName("id")
     val number: Int,
     val name: String,
     val height: Int,
     val weight: Int,
     val sprites: Sprites,
-    val types: List<Type>
+    val stats: List<Stats>,
+    val types: List<Types>
 )

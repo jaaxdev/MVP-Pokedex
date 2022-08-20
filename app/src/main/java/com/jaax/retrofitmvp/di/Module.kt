@@ -5,7 +5,7 @@ import com.jaax.retrofitmvp.data.MainMVP
 import com.jaax.retrofitmvp.data.MainPresenter
 import com.jaax.retrofitmvp.data.network.PokemonService
 import com.jaax.retrofitmvp.ui.MainActivity
-import com.jaax.retrofitmvp.utils.MainConstants
+import com.jaax.retrofitmvp.utils.MyConsts
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -37,8 +37,8 @@ object MainModule {
     fun provideRetrofit(): PokemonService {
         return Retrofit
             .Builder()
-            .baseUrl( MainConstants.POKEAPI_BASE_URL )
-            .addConverterFactory( GsonConverterFactory.create() )
+            .baseUrl(MyConsts.POKEAPI_BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(PokemonService::class.java)
     }

@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.jaax.retrofitmvp.R
 import com.jaax.retrofitmvp.data.model.Result
 import com.jaax.retrofitmvp.databinding.CardviewResultBinding
-import com.jaax.retrofitmvp.utils.MainConstants
+import com.jaax.retrofitmvp.utils.MyConsts
 
 class ResultAdapter(
     private val onPokeListener: (String) -> Unit
@@ -24,7 +24,7 @@ class ResultAdapter(
             binding.number.text = "#".plus(result.getNumber())
             Glide
                 .with(itemView.context)
-                .load(MainConstants.POKEMON_IMAGE_URL.plus(result.getNumber()).plus(".png"))
+                .load(MyConsts.POKEMON_IMAGE_URL.plus(result.getNumber()).plus(".png"))
                 .centerCrop()
                 .into(binding.image)
 

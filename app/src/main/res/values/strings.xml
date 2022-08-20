@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Poke-jaax</string>
     <string name="image_description">image description</string>
-    <string name="dots">...</string>
+    <string name="dots">…</string>
+    <string name="shiny">Shiny</string>
+    <string name="stats">Stats</string>
+    <string name="loading">Cargando...</string>
 </resources>
