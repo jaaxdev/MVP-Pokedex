@@ -1,11 +1,13 @@
 package com.jaax.retrofitmvp.data
 
-import com.jaax.retrofitmvp.data.model.Pokemon
+import android.util.Log
+import com.jaax.retrofitmvp.data.model.Result
+import com.jaax.retrofitmvp.data.network.PokemonService
 import com.jaax.retrofitmvp.ui.MainActivity
-import com.orhanobut.logger.Logger
 import javax.inject.Inject
 
-class MainPresenter @Inject constructor(private val view: MainActivity) : MainMVP.Presenter,
+class MainPresenter @Inject constructor(private val view: MainActivity, service: PokemonService) :
+    MainMVP.Presenter,
     MainMVP.Model.OnFinishedListener {
 
     private var model: MainMVP.Model? = null
@@ -13,7 +15,7 @@ class MainPresenter @Inject constructor(private val view: MainActivity) : MainMV
     private var loadable = false
 
     init {
-        model = MainModel(this)
+        model = MainModel(this, service)
     }
 
     override suspend fun getMorePokemon() {
@@ -36,11 +38,15 @@ class MainPresenter @Inject constructor(private val view: MainActivity) : MainMV
         return this.offset
     }
 
-    override fun onFinished(listPokemon: List<Pokemon>) {
+    override fun cancelProgressbar() {
+        view.cancelProgressbar()
+    }
+
+    override fun onFinished(listPokemon: List<Result>) {
         view.showPokemon(listPokemon)
     }
 
     override fun onFailure(t: Throwable) {
-        Logger.e(t.message.toString())
+        Log.e("jaaax", t.message.toString())
     }
 }

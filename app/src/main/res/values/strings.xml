@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Pokedex API</string>
+    <string name="app_name">Pokedex</string>
+    <string name="image_description">image description</string>
+    <string name="dots">…</string>
+    <string name="shiny">Shiny</string>
+    <string name="basic_stats">Stats base</string>
+    <string name="normal">Normal</string>
 </resources>

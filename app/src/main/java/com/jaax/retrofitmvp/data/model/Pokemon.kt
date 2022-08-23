@@ -3,13 +3,12 @@ package com.jaax.retrofitmvp.data.model
 import com.google.gson.annotations.SerializedName
 
 data class Pokemon(
-    @SerializedName("name")
+    @SerializedName("id")
+    val number: Int,
     val name: String,
-    @SerializedName("url")
-    val numberURL: String ) {
-
-    fun getNumber(): Int {
-        val arrayNumberImg = numberURL.split( "/" )
-        return arrayNumberImg[arrayNumberImg.size - 2].toInt()
-    }
-}
+    val height: Int,
+    val weight: Int,
+    val sprites: Sprites,
+    val stats: List<Stats>,
+    val types: List<Types>
+)

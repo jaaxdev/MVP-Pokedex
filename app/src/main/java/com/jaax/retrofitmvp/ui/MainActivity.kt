@@ -1,17 +1,15 @@
 package com.jaax.retrofitmvp.ui
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jaax.retrofitmvp.data.MainMVP
-import com.jaax.retrofitmvp.data.MainPresenter
-import com.jaax.retrofitmvp.data.model.Pokemon
+import com.jaax.retrofitmvp.data.model.Result
 import com.jaax.retrofitmvp.databinding.ActivityMainBinding
-import com.jaax.retrofitmvp.utils.MainConstants
-import com.orhanobut.logger.AndroidLogAdapter
-import com.orhanobut.logger.Logger
+import com.jaax.retrofitmvp.utils.MyConsts
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,28 +17,25 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), MainMVP.View {
-    private lateinit var bind: ActivityMainBinding
-    private lateinit var pokemonAdapter: PokemonAdapter
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var adapter: ResultAdapter
     private lateinit var layoutManager: GridLayoutManager
 
     @Inject
     lateinit var presenter: MainMVP.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        bind = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
-        setContentView(bind.root)
+        setContentView(binding.root)
 
-        Logger.addLogAdapter(AndroidLogAdapter())
-
+        adapter = ResultAdapter(onPokeListener = { name -> onPokeClicked(name) })
         layoutManager = GridLayoutManager(this, 3)
 
-        bind.recyclerView.setHasFixedSize(true)
-        bind.recyclerView.layoutManager = layoutManager
+        binding.recyclerView.setHasFixedSize(true)
+        binding.recyclerView.layoutManager = layoutManager
 
-        pokemonAdapter = PokemonAdapter()
-        presenter = MainPresenter(this)
-        bind.recyclerView.adapter = pokemonAdapter
+        binding.recyclerView.adapter = adapter
 
         lifecycleScope.launch(Dispatchers.IO) { presenter.getMorePokemon() }
     }
@@ -48,7 +43,7 @@ class MainActivity : AppCompatActivity(), MainMVP.View {
     override fun onResume() {
         super.onResume()
 
-        bind.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 if (dy > 0) {
@@ -59,7 +54,7 @@ class MainActivity : AppCompatActivity(), MainMVP.View {
                     if (presenter.getMyLoadable()) {
                         if ((itemCount + lastItems) >= itemTotalCount) {
                             presenter.setMyLoadable(false)
-                            presenter.increaseOffset(MainConstants.LIMIT)
+                            presenter.increaseOffset(MyConsts.LIMIT)
 
                             lifecycleScope.launch(Dispatchers.IO) {
                                 presenter.getMorePokemon()
@@ -71,7 +66,15 @@ class MainActivity : AppCompatActivity(), MainMVP.View {
         })
     }
 
-    override fun showPokemon(listPokemon: List<Pokemon>) {
-        pokemonAdapter.addAllPokemon(listPokemon)
+    private fun onPokeClicked(name: String) {
+        PokemonDialog(name).show(supportFragmentManager, "showpokemon")
+    }
+
+    override fun showPokemon(listPokemon: List<Result>) {
+        adapter.addAllPokemon(listPokemon)
+    }
+
+    override fun cancelProgressbar() {
+        binding.progressbar.visibility = View.GONE
     }
 }
