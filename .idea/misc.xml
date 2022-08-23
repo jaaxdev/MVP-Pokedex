@@ -5,8 +5,51 @@
       <map>
         <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14" />
         <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/background_pokemon_cardview.xml" value="0.143" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/bg_cardview_info.xml" value="0.136" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/bg_pokemon_cardview.xml" value="0.144" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/bg_pokemon_main.xml" value="0.144" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/bg_progressbar.xml" value="0.144" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/bg_single_pokemon.xml" value="0.144" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/electric.xml" value="0.136" />
         <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/gradiente.xml" value="0.143" />
         <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/ic_launcher_background.xml" value="0.143" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/normal.xml" value="0.136" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_bug.xml" value="0.141" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_dark.xml" value="0.141" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_dragon.xml" value="0.141" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_electric.xml" value="0.141" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_fairy.xml" value="0.141" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_fighting.xml" value="0.141" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_fire.xml" value="0.141" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_fire_electric.xml" value="0.1175" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_fire_fighting.xml" value="0.1175" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_fire_flying.xml" value="0.1175" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_fire_ground.xml" value="0.1175" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_fire_ice.xml" value="0.1175" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_fire_normal.xml" value="0.1175" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_fire_poison.xml" value="0.1175" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_fire_water.xml" value="0.1175" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_flying.xml" value="0.141" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_ghost.xml" value="0.144" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_grass.xml" value="0.141" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_ground.xml" value="0.144" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_ice.xml" value="0.141" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_normal.xml" value="0.141" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_normal_dark.xml" value="0.1175" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_normal_electric.xml" value="0.1175" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_normal_fairy.xml" value="0.1175" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_normal_fighting.xml" value="0.1175" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_normal_fire.xml" value="0.1175" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_normal_flying.xml" value="0.1175" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_normal_grass.xml" value="0.1175" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_normal_ground.xml" value="0.1175" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_normal_psychic.xml" value="0.1175" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_normal_water.xml" value="0.1175" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_poison.xml" value="0.141" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_psychic.xml" value="0.141" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_rock.xml" value="0.141" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_steel.xml" value="0.141" />
+        <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/drawable/type_water.xml" value="0.141" />
         <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/layout/activity_main.xml" value="0.196875" />
         <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/layout/adapter_pokemon.xml" value="0.18" />
         <entry key="..\:/Users/Jaaziel/Documents/Android Projects/RetrofitMVP/app/src/main/res/layout/cardview_pokemon.xml" value="0.33" />

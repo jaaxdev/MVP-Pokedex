@@ -20,13 +20,12 @@ class ResultAdapter(
         private val binding = CardviewResultBinding.bind(view)
 
         fun bind(result: Result, onPokeListener: (String) -> Unit) {
-            binding.name.text = result.name
-            binding.number.text = "#".plus(result.getNumber())
+            binding.tvName.text = result.name
             Glide
                 .with(itemView.context)
                 .load(MyConsts.POKEMON_IMAGE_URL.plus(result.getNumber()).plus(".png"))
-                .centerCrop()
-                .into(binding.image)
+                .thumbnail(Glide.with(itemView.context).load(R.drawable.loading))
+                .into(binding.ivPokemon)
 
             itemView.setOnClickListener { onPokeListener(result.name) }
         }
