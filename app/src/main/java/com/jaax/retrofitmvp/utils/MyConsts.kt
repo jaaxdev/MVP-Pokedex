@@ -1,5 +1,6 @@
 package com.jaax.retrofitmvp.utils
 
+import android.graphics.Color
 import android.view.View
 import android.widget.TextView
 import com.jaax.retrofitmvp.R
@@ -31,18 +32,33 @@ class MyConsts {
                 "fire" -> setBg(tv1, types[0].type.name, R.drawable.fire)
                 "steel" -> setBg(tv1, types[0].type.name, R.drawable.steel)
                 "bug" -> setBg(tv1, types[0].type.name, R.drawable.bug)
-                "dragon" -> setBg(tv1, types[0].type.name, R.drawable.dragon)
+                "dragon" -> {
+                    setBg(tv1, types[0].type.name, R.drawable.dragon)
+                    tv1.setTextColor(Color.WHITE)
+                }
                 "electric" -> setBg(tv1, types[0].type.name, R.drawable.electric)
                 "ghost" -> setBg(tv1, types[0].type.name, R.drawable.ghost)
                 "fairy" -> setBg(tv1, types[0].type.name, R.drawable.fairy)
                 "ice" -> setBg(tv1, types[0].type.name, R.drawable.ice)
-                "fighting" -> setBg(tv1, types[0].type.name, R.drawable.fighting)
+                "fighting" -> {
+                    setBg(tv1, types[0].type.name, R.drawable.fighting)
+                    tv1.setTextColor(Color.WHITE)
+                }
                 "normal" -> setBg(tv1, types[0].type.name, R.drawable.normal)
                 "psychic" -> setBg(tv1, types[0].type.name, R.drawable.psychic)
-                "rock" -> setBg(tv1, types[0].type.name, R.drawable.rock)
+                "rock" -> {
+                    setBg(tv1, types[0].type.name, R.drawable.rock)
+                    tv1.setTextColor(Color.WHITE)
+                }
                 "ground" -> setBg(tv1, types[0].type.name, R.drawable.ground)
-                "dark" -> setBg(tv1, types[0].type.name, R.drawable.dark)
-                "poison" -> setBg(tv1, types[0].type.name, R.drawable.poison)
+                "dark" -> {
+                    setBg(tv1, types[0].type.name, R.drawable.dark)
+                    tv1.setTextColor(Color.WHITE)
+                }
+                "poison" -> {
+                    setBg(tv1, types[0].type.name, R.drawable.poison)
+                    tv1.setTextColor(Color.WHITE)
+                }
                 "flying" -> setBg(tv1, types[0].type.name, R.drawable.flying)
             }
             if(types.size == 2) {
@@ -53,18 +69,33 @@ class MyConsts {
                     "fire" -> setBg(tv2, types[1].type.name, R.drawable.fire)
                     "steel" -> setBg(tv2, types[1].type.name, R.drawable.steel)
                     "bug" -> setBg(tv2, types[1].type.name, R.drawable.bug)
-                    "dragon" -> setBg(tv2, types[1].type.name, R.drawable.dragon)
+                    "dragon" -> {
+                        setBg(tv2, types[1].type.name, R.drawable.dragon)
+                        tv2.setTextColor(Color.WHITE)
+                    }
                     "electric" -> setBg(tv2, types[1].type.name, R.drawable.electric)
                     "ghost" -> setBg(tv2, types[1].type.name, R.drawable.ghost)
                     "fairy" -> setBg(tv2, types[1].type.name, R.drawable.fairy)
                     "ice" -> setBg(tv2, types[1].type.name, R.drawable.ice)
-                    "fighting" -> setBg(tv2, types[1].type.name, R.drawable.fighting)
+                    "fighting" -> {
+                        setBg(tv2, types[1].type.name, R.drawable.fighting)
+                        tv2.setTextColor(Color.WHITE)
+                    }
                     "normal" -> setBg(tv2, types[1].type.name, R.drawable.normal)
                     "psychic" -> setBg(tv2, types[1].type.name, R.drawable.psychic)
-                    "rock" -> setBg(tv2, types[1].type.name, R.drawable.rock)
+                    "rock" -> {
+                        setBg(tv2, types[1].type.name, R.drawable.rock)
+                        tv2.setTextColor(Color.WHITE)
+                    }
                     "ground" -> setBg(tv2, types[1].type.name, R.drawable.ground)
-                    "dark" -> setBg(tv2, types[1].type.name, R.drawable.dark)
-                    "poison" -> setBg(tv2, types[1].type.name, R.drawable.poison)
+                    "dark" -> {
+                        setBg(tv2, types[1].type.name, R.drawable.dark)
+                        tv2.setTextColor(Color.WHITE)
+                    }
+                    "poison" -> {
+                        setBg(tv2, types[1].type.name, R.drawable.poison)
+                        tv2.setTextColor(Color.WHITE)
+                    }
                     "flying" -> setBg(tv2, types[1].type.name, R.drawable.flying)
                 }
             }
