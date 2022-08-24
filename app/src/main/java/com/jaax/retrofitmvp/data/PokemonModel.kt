@@ -5,8 +5,9 @@ import com.jaax.retrofitmvp.data.network.PokemonService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class PokemonModel(
+class PokemonModel @Inject constructor(
     private val presenter: PokemonPresenter,
     private val service: PokemonService) : PokemonMVP.Model {
 

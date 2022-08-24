@@ -3,8 +3,13 @@ package com.jaax.retrofitmvp.data
 import com.jaax.retrofitmvp.data.model.Pokemon
 import com.jaax.retrofitmvp.data.network.PokemonService
 import com.jaax.retrofitmvp.ui.PokemonDialog
+import javax.inject.Inject
 
-class PokemonPresenter(private val view: PokemonDialog, service: PokemonService) : PokemonMVP.Presenter {
+class PokemonPresenter @Inject constructor(
+    private val view: PokemonDialog,
+    service: PokemonService
+) : PokemonMVP.Presenter {
+
     private var model: PokemonModel? = null
 
     init {

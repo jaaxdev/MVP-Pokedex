@@ -21,13 +21,13 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class PokemonDialog(private val name: String) : DialogFragment(), PokemonMVP.View {
+class PokemonDialog @Inject constructor(private val name: String) : DialogFragment(), PokemonMVP.View {
     private var _binding: FragmentSinglePokemonBinding? = null
     private val binding get() = _binding!!
-    private lateinit var presenter: PokemonMVP.Presenter
 
     @Inject
     lateinit var service: PokemonService
+    private lateinit var presenter: PokemonMVP.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
