@@ -1,7 +1,5 @@
 package com.jaax.retrofitmvp.data
 
-import android.util.Log
-import com.jaax.retrofitmvp.utils.MyConsts
 import com.jaax.retrofitmvp.data.model.ResultResponse
 import com.jaax.retrofitmvp.data.network.PokemonService
 import retrofit2.Call
@@ -14,25 +12,20 @@ class MainModel @Inject constructor(
     private val service: PokemonService) : MainMVP.Model {
 
     override suspend fun getListPokemon(onFinishedListener: MainMVP.Model.OnFinishedListener) {
-        val call = service.getAllPokemon(MyConsts.LIMIT, presenter.getMyOffset())
+        val call = service.getAllPokemon(presenter.getOffset(), presenter.itemsLimit())
 
         call.enqueue(object : Callback<ResultResponse> {
-            override fun onResponse(
-                call: Call<ResultResponse>,
-                response: Response<ResultResponse>
-            ) {
-                presenter.setMyLoadable(true)
+            override fun onResponse(call: Call<ResultResponse>, response: Response<ResultResponse>) {
                 if (response.isSuccessful) {
-                    val listPokemon = response.body()!!.listPokemon
+                    val results = response.body()!!
+                    onFinishedListener.onFinished(results.listPokemon)
                     presenter.cancelProgressbar()
-                    onFinishedListener.onFinished(listPokemon)
                 } else {
-                    Log.i(MyConsts.TAG_LOG, "UNSUCCESSFUL")
+                    presenter.notifyUnsuccess()
                 }
             }
 
             override fun onFailure(call: Call<ResultResponse>, t: Throwable) {
-                presenter.setMyLoadable(true)
                 onFinishedListener.onFailure(t)
             }
         })

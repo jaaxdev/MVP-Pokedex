@@ -12,7 +12,8 @@ class MainPresenter @Inject constructor(private val view: MainActivity, service:
 
     private var model: MainMVP.Model? = null
     private var offset = 0
-    private var loadable = false
+    private var limit = 20
+    private var isLoading = false
 
     init {
         model = MainModel(this, service)
@@ -22,24 +23,32 @@ class MainPresenter @Inject constructor(private val view: MainActivity, service:
         model!!.getListPokemon(this)
     }
 
-    override fun setMyLoadable(canLoad: Boolean) {
-        this.loadable = canLoad
+    override fun setIsLoading(isLoading: Boolean) {
+        this.isLoading = isLoading
     }
 
-    override fun getMyLoadable(): Boolean {
-        return this.loadable
+    override fun getIsLoading(): Boolean {
+        return this.isLoading
     }
 
-    override fun increaseOffset(increment: Int) {
-        this.offset += increment
+    override fun increaseOffset() {
+        this.offset += limit
     }
 
-    override fun getMyOffset(): Int {
+    override fun getOffset(): Int {
         return this.offset
+    }
+
+    override fun itemsLimit(): Int {
+        return this.limit
     }
 
     override fun cancelProgressbar() {
         view.cancelProgressbar()
+    }
+
+    override fun notifyUnsuccess() {
+        view
     }
 
     override fun onFinished(listPokemon: List<Result>) {
@@ -48,5 +57,6 @@ class MainPresenter @Inject constructor(private val view: MainActivity, service:
 
     override fun onFailure(t: Throwable) {
         Log.e("jaaax", t.message.toString())
+        view.showErrorMessage()
     }
 }

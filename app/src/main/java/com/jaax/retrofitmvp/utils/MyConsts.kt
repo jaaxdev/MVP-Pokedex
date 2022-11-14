@@ -9,9 +9,7 @@ import com.jaax.retrofitmvp.data.model.Types
 class MyConsts {
     companion object {
         const val POKEAPI_BASE_URL = "https://www.pokeapi.co/api/v2/"
-        const val POKEMON_ENDPOINT = "pokemon"
         const val POKEMON_IMAGE_URL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
-        const val LIMIT = 30
         const val TAG_LOG = "pokedex"
 
         fun numberAndName(number: Int, name: String) = "#$number ${name.uppercase()}"

@@ -9,14 +9,14 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface PokemonService {
-    @GET(MyConsts.POKEMON_ENDPOINT)
+    @GET("pokemon")
     fun getAllPokemon(
-        @Query( value = "limit")
-        limit: Int,
         @Query( value = "offset" )
-        offset: Int
+        offset: Int,
+        @Query( value = "limit")
+        limit: Int
     ): Call<ResultResponse>
 
-    @GET("${MyConsts.POKEMON_ENDPOINT}/{name}")
+    @GET("pokemon/{name}")
     fun getPokemonInfo(@Path("name") name: String): Call<Pokemon>
 }

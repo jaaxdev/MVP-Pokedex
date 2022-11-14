@@ -2,7 +2,7 @@ package com.jaax.retrofitmvp.data
 
 import com.jaax.retrofitmvp.data.model.Result
 
-interface MainMVP {
+sealed interface MainMVP {
 
     interface Model {
         suspend fun getListPokemon(onFinishedListener: OnFinishedListener)
@@ -15,15 +15,19 @@ interface MainMVP {
 
     interface Presenter {
         suspend fun getMorePokemon()
-        fun setMyLoadable(canLoad: Boolean)
-        fun getMyLoadable(): Boolean
-        fun increaseOffset(increment: Int)
-        fun getMyOffset(): Int
+        fun setIsLoading(isLoading: Boolean)
+        fun getIsLoading(): Boolean
+        fun increaseOffset()
+        fun getOffset(): Int
+        fun itemsLimit(): Int
         fun cancelProgressbar()
+        fun notifyUnsuccess()
     }
 
     interface View {
         fun showPokemon(listPokemon: List<Result>)
         fun cancelProgressbar()
+        fun showErrorMessage()
+        fun showUnsuccessMessage()
     }
 }
