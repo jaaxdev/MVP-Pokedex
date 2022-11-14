@@ -45,12 +45,15 @@ object MainModule {
 object NetworkModule {
     @Singleton
     @Provides
-    fun provideRetrofit(): PokemonService {
+    fun provideRetrofit(): Retrofit {
         return Retrofit
             .Builder()
             .baseUrl(MyConsts.POKEAPI_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(PokemonService::class.java)
     }
+
+    @Singleton
+    @Provides
+    fun providePokemonService(retrofit: Retrofit) = retrofit.create(PokemonService::class.java)
 }
