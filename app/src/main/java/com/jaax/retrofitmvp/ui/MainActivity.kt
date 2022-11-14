@@ -2,6 +2,7 @@ package com.jaax.retrofitmvp.ui
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -10,6 +11,7 @@ import com.jaax.retrofitmvp.data.MainMVP
 import com.jaax.retrofitmvp.data.model.Result
 import com.jaax.retrofitmvp.databinding.ActivityMainBinding
 import com.jaax.retrofitmvp.utils.MyConsts
+import com.jaax.retrofitmvp.utils.MyConsts.Companion.TAG_LOG
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -38,27 +40,27 @@ class MainActivity : AppCompatActivity(), MainMVP.View {
         binding.recyclerView.adapter = adapter
 
         lifecycleScope.launch(Dispatchers.IO) { presenter.getMorePokemon() }
+        onScroll()
     }
 
-    override fun onResume() {
-        super.onResume()
-
+    private fun onScroll() {
         binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
+
+                val visibleItemCount = layoutManager.childCount
+                val totalItems = layoutManager.itemCount
+                val pastVisibleItem = layoutManager.findFirstVisibleItemPosition()
+
                 if (dy > 0) {
-                    val itemCount = layoutManager.childCount
-                    val itemTotalCount = layoutManager.itemCount
-                    val lastItems = layoutManager.findFirstVisibleItemPosition()
-
-                    if (presenter.getMyLoadable()) {
-                        if ((itemCount + lastItems) >= itemTotalCount) {
-                            presenter.setMyLoadable(false)
-                            presenter.increaseOffset(MyConsts.LIMIT)
-
+                    if (!presenter.getIsLoading()) {
+                        if ((visibleItemCount + pastVisibleItem) >= totalItems) {
+                            presenter.setIsLoading(true)
+                            presenter.increaseOffset()
                             lifecycleScope.launch(Dispatchers.IO) {
                                 presenter.getMorePokemon()
                             }
+                            presenter.setIsLoading(false)
                         }
                     }
                 }
@@ -76,5 +78,13 @@ class MainActivity : AppCompatActivity(), MainMVP.View {
 
     override fun cancelProgressbar() {
         binding.progressbar.visibility = View.GONE
+    }
+
+    override fun showErrorMessage() {
+        Toast.makeText(this, "Ocurrió un error", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showUnsuccessMessage() {
+        Toast.makeText(this, "Algo salió mal", Toast.LENGTH_SHORT).show()
     }
 }
